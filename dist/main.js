@@ -1,0 +1,1 @@
+fetch("http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'&active_sw={active_sw}&name_part={name_part}",{mode:"no-cors"}).then((function(e){return e.json()})).then((function(e){console.log(e)}));
