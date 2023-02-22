@@ -1,1 +1,1 @@
-fetch("http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'&active_sw={active_sw}&name_part={name_part}",{mode:"no-cors"}).then((function(e){return e.json()})).then((function(e){console.log(e)}));
+(()=>{const e=new Headers;e.append("x-apisports-key","c16bc477f3a2a8d3fd289b58d1172ad8"),fetch("https://v3.football.api-sports.io/standings?season=2022&league=39",{method:"GET",headers:e,redirect:"follow"},{mode:"cors"}).then((function(e){return e.json()})).then((function(e){console.log(e)}))})();
