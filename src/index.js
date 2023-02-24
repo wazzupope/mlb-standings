@@ -8,9 +8,6 @@ const requestOptions = {
 };
 
 fetch("https://v3.football.api-sports.io/standings?season=2022&league=39", requestOptions, {mode: 'cors'})
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(response) {
-    console.log(response);
-  });
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
