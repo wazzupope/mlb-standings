@@ -19,5 +19,6 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
   .then(result => {
     const main = document.getElementById('main');
     main.textContent = result.response[0][0].team.name;
+    return result;
   })
   .catch(error => console.log('error', error));
