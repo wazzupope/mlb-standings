@@ -7,7 +7,7 @@ const requestOptions = {
   redirect: 'follow',
 };
 
-fetch("https://v3.football.api-sports.io/standings?season=2022&league=39", requestOptions, {mode: 'cors'})
-  .then(response => response.text())
+fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", requestOptions, {mode: 'cors'})
+  .then(response => response.json())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
