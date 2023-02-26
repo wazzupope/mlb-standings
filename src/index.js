@@ -14,11 +14,20 @@ const requestOptions = {
 };
 
 // Fetch request to API for MLB standings
-fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", requestOptions, {mode: 'cors'})
-  .then(response => response.json())
-  .then(result => {
-    const main = document.getElementById('main');
-    main.textContent = result.response[0][0].team.name;
+async function getData() {
+  const response = await fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", requestOptions, {mode: 'cors'})
+    const result = await response.json();
     return result;
-  })
-  .catch(error => console.log('error', error));
+
+    // .then(response => response.json())
+    // .then(result => {
+    //   const main = document.getElementById('main');
+    //   main.textContent = result.response[0][0].team.name;
+    //   return result;
+    // })
+    // .catch(error => console.log('error', error));
+};
+
+const data = getData();
+
+console.log(data);
