@@ -30,6 +30,9 @@ class Team {
 
 /*
 TODO
+in last .then, need to create DOM elements for each team object to display data
+then need to figure out how to sort it in a table by standings by AL/NL
+then need to be able to sort by stat in each column, ascending/descending
 
 figure out how to handle fetch error in .catch (article on phone)
 */
