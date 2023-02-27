@@ -55,8 +55,25 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
     return teamList;
   })
   .then(teamList => {
-    console.log(teamList)
-    // const main = document.getElementById('main');
-    // main.textContent = result.response[0][0].team.name;
+    console.log(teamList);
+
+    const main = document.getElementById('main');
+    // create table element and append to main
+    function createTable() {
+      const tableElement = document.createElement('table');
+      tableElement.setAttribute('id', 'table');
+      const tableId = document.getElementById('table');
+      return tableId;
+    };
+    const table = createTable();
+    main.appendChild(table);
+
+
+
+    function createElements(arr) {
+      arr.map(x => {
+        // need to create a tr for each team and a td for each piece of data on that row
+      });
+    };
   })
   .catch(error => console.log('error', error));
