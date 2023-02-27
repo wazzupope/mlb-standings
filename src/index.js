@@ -2,6 +2,13 @@ import {loadHome} from './home';
 
 loadHome();
 
+// create table element and append to main
+const table = document.createElement('table');
+table.setAttribute('id', 'table');
+const main = document.getElementById('main');
+const tableId = document.getElementById('table');
+main.appendChild(tableId);
+
 // API headers
 const myHeaders = new Headers();
 myHeaders.append('x-apisports-key', 'c16bc477f3a2a8d3fd289b58d1172ad8');
@@ -28,15 +35,6 @@ class Team {
   };
 };
 
-/*
-TODO
-in last .then, need to create DOM elements for each team object to display data
-then need to figure out how to sort it in a table by standings by AL/NL
-then need to be able to sort by stat in each column, ascending/descending
-
-figure out how to handle fetch error in .catch (article on phone)
-*/
-
 // Create array of Teams with selected data
 function createTeams(teams) {
   const teamArray = teams.map(x => new Team(x.team.name, x.team.id, x.team.logo, x.points.for, x.points.against, x.group.name, x.games.played, x.games.win, x.games.lose));
@@ -57,18 +55,6 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
   .then(teamList => {
     console.log(teamList);
 
-    const main = document.getElementById('main');
-    // create table element and append to main
-    function createTable() {
-      const tableElement = document.createElement('table');
-      tableElement.setAttribute('id', 'table');
-      const tableId = document.getElementById('table');
-      return tableId;
-    };
-    const table = createTable();
-    main.appendChild(table);
-
-
 
     function createElements(arr) {
       arr.map(x => {
@@ -77,3 +63,13 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
     };
   })
   .catch(error => console.log('error', error));
+
+/*
+TODO
+why doesn't appending a table to main work above?
+in last .then, need to create DOM elements for each team object to display data
+then need to figure out how to sort it in a table by standings by AL/NL
+then need to be able to sort by stat in each column, ascending/descending
+
+figure out how to handle fetch error in .catch (article on phone)
+*/
