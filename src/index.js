@@ -13,6 +13,7 @@ const requestOptions = {
   redirect: 'follow',
 };
 
+// Class constructor for MLB teams with data
 class Team {
   constructor(name, id, logo, runsFor, runsAgainst, league, gamesPlayed, gamesWon, gamesLost) {
     this.name = name;
@@ -29,16 +30,14 @@ class Team {
 
 /*
 TODO
-look at function below and figure out how to take array itsms in teams (in fetch call)
-and make each of them an object of class Team
 
 figure out how to handle fetch error in .catch (article on phone)
 */
 
+// Create array of Teams with selected data
 function createTeams(teams) {
-  const teamArray[] = 
-  for()
-  teams[i] = new Team(teams[i].name, etc.)
+  const teamArray = teams.map(x => new Team(x.team.name, x.team.id, x.team.logo, x.points.for, x.points.against, x.group.name, x.games.played, x.games.win, x.games.lose));
+  return teamArray;
 }
 
 // Fetch request to API for MLB standings
@@ -49,11 +48,12 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
     return teams;
   })
   .then(teams => {
-    teams.forEach(
-
-    )
+    const teamList = createTeams(teams);
+    return teamList;
   })
+  .then(teamList => {
+    console.log(teamList)
     // const main = document.getElementById('main');
     // main.textContent = result.response[0][0].team.name;
-    // return result;
+  })
   .catch(error => console.log('error', error));
