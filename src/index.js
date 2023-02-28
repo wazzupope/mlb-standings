@@ -2,6 +2,20 @@ import {loadHome} from './home';
 
 loadHome();
 
+function appendRow(x) {
+  function camelize(string) {
+    return string.replace(/\w+/g, (text) => text.charAt(0).toLowerCase() + text.substr(1)).replace(/\s/g, ' ');
+  };
+
+  const tr = document.createElement('tr');
+  const teamName = camelize(x.name);
+  tr.setAttribute('class', 'tr');
+  tr.setAttribute('id', teamName)
+  const table = document.getElementById('table');
+  table.appendChild(tr);
+  return tr;
+};
+
 // API headers
 const myHeaders = new Headers();
 myHeaders.append('x-apisports-key', 'c16bc477f3a2a8d3fd289b58d1172ad8');
@@ -51,9 +65,12 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 
     function createElements(arr) {
       arr.map(x => {
-        // need to create a tr for each team and a td for each piece of data on that row
+        appendRow(x);
+        return x;
       });
     };
+
+    createElements(teamList);
   })
   .catch(error => console.log('error', error));
 
