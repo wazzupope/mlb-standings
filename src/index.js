@@ -2,18 +2,39 @@ import {loadHome} from './home';
 
 loadHome();
 
-function appendRow(x) {
-  function makeId(string) {
-    return string.replace(/\w+/g, (text) => text.charAt(0).toLowerCase() + text.substr(1)).replace(/\s/g, '-').replace('.', '-');
-  };
+function makeId(string) {
+  return string.replace(/\w+/g, (text) => text.charAt(0).toLowerCase() + text.substr(1)).replace(/\s/g, '-').replace('.', '-');
+};
 
+function appendRow(x) {
   const tr = document.createElement('tr');
   const teamName = makeId(x.name);
   tr.setAttribute('class', 'tr');
   tr.setAttribute('id', teamName)
   const table = document.getElementById('table');
   table.appendChild(tr);
-  return tr;
+
+  function makeCell(prop) {
+    const td = document.createElement('td');
+    td.textContent = prop;
+    td.setAttribute = ('class', 'table-cell');
+    return td;
+  };
+
+  function nameCell() {
+    makeCell(x.name);
+  };
+  nameCell();
+
+
+  // id
+  // logo
+  // runsFor
+  // runsAgainst
+  // league
+  // gamesPlayed
+  // gamesWon
+  // gamesLost
 };
 
 // API headers
@@ -62,7 +83,6 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
   .then(teamList => {
     console.log(teamList);
 
-
     function createElements(arr) {
       arr.map(x => {
         appendRow(x);
@@ -76,7 +96,6 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 
 /*
 TODO
-fix appendRow to remove spaces and make id's hyphenated (not camelized)
 comment out code to make easier to follow
 make tr's have td's for each piece of data for each team
 figure out if you need to move all of this code back to home.js
