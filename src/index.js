@@ -2,13 +2,6 @@ import {loadHome} from './home';
 
 loadHome();
 
-// create table element and append to main
-const table = document.createElement('table');
-table.setAttribute('id', 'table');
-const main = document.getElementById('main');
-const tableId = document.getElementById('table');
-main.appendChild(tableId);
-
 // API headers
 const myHeaders = new Headers();
 myHeaders.append('x-apisports-key', 'c16bc477f3a2a8d3fd289b58d1172ad8');
