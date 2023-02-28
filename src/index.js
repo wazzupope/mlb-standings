@@ -3,12 +3,12 @@ import {loadHome} from './home';
 loadHome();
 
 function appendRow(x) {
-  function camelize(string) {
-    return string.replace(/\w+/g, (text) => text.charAt(0).toLowerCase() + text.substr(1)).replace(/\s/g, ' ');
+  function makeId(string) {
+    return string.replace(/\w+/g, (text) => text.charAt(0).toLowerCase() + text.substr(1)).replace(/\s/g, '-').replace('.', '-');
   };
 
   const tr = document.createElement('tr');
-  const teamName = camelize(x.name);
+  const teamName = makeId(x.name);
   tr.setAttribute('class', 'tr');
   tr.setAttribute('id', teamName)
   const table = document.getElementById('table');
