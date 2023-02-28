@@ -18,14 +18,13 @@ function appendRow(x) {
     const td = document.createElement('td');
     td.textContent = prop;
     td.setAttribute = ('class', 'table-cell');
-    return td;
+    tr.appendChild(td);
   };
 
   function nameCell() {
     makeCell(x.name);
   };
   nameCell();
-
 
   // id
   // logo
@@ -96,12 +95,13 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 
 /*
 TODO
+create functionality like nameCell for each of the pieces of data below it in comments
 comment out code to make easier to follow
-make tr's have td's for each piece of data for each team
-figure out if you need to move all of this code back to home.js
+create basic css styling to help with readability
+figure out if you need to move all of this code back to home.js (will that mess with git tracking?)
 then do you need to create new files for each version of standings (al/nl, divisions, etc)
 then need to figure out how to sort table by standings by AL/NL
 then need to be able to sort by stat in each column, ascending/descending
 figure out how to handle fetch error in .catch (article on phone)
-
+add a waiting spinner while awaiting fetch
 */
