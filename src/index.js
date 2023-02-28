@@ -76,10 +76,13 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 
 /*
 TODO
-why doesn't appending a table to main work above?
-in last .then, need to create DOM elements for each team object to display data
-then need to figure out how to sort it in a table by standings by AL/NL
+fix appendRow to remove spaces and make id's hyphenated (not camelized)
+comment out code to make easier to follow
+make tr's have td's for each piece of data for each team
+figure out if you need to move all of this code back to home.js
+then do you need to create new files for each version of standings (al/nl, divisions, etc)
+then need to figure out how to sort table by standings by AL/NL
 then need to be able to sort by stat in each column, ascending/descending
-
 figure out how to handle fetch error in .catch (article on phone)
+
 */
