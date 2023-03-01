@@ -134,7 +134,9 @@ need numbers for what place the team is in on the left of each row
 need to figure out how to make logo images display
 need to add data cells for win percentage (which will be the initially sorted column)
 need to add data cells for run differential (where to enter logic for runsFor minus runsAagainst)
+more options for data to add: games behind 1st place, streak, record over last 10 games (see espn app)
 create basic css styling to help with readability
+need a header (and footer?)
 figure out if you need to move all of this code back to home.js (will that mess with git tracking?)
 then do you need to create new files for each version of standings (al/nl, divisions, etc)
 then need to figure out how to sort table by standings by AL/NL
