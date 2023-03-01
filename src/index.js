@@ -1,12 +1,16 @@
 import {loadHome} from './home';
 
+// Load initial structure of homepage
 loadHome();
 
+// Function that turns string into hyphenated string for element ID's
 function makeId(string) {
   return string.replace(/\w+/g, (text) => text.charAt(0).toLowerCase() + text.substr(1)).replace(/\s/g, '-').replace('.', '-');
 };
 
+// DOM creation of table
 function appendRow(x) {
+  // Create table rows
   const tr = document.createElement('tr');
   const teamName = makeId(x.name);
   tr.setAttribute('class', 'tr');
@@ -14,6 +18,7 @@ function appendRow(x) {
   const table = document.getElementById('table');
   table.appendChild(tr);
 
+  // Function for creating table cells
   function makeCell(prop) {
     const td = document.createElement('td');
     td.textContent = prop;
@@ -21,19 +26,47 @@ function appendRow(x) {
     tr.appendChild(td);
   };
 
+  // Create Cells for team logos
+  function logoCell() {
+    makeCell(x.logo);
+  };
+  logoCell();
+
+  // Create cells for team names
   function nameCell() {
     makeCell(x.name);
   };
   nameCell();
 
-  // id
-  // logo
-  // runsFor
-  // runsAgainst
-  // league
-  // gamesPlayed
-  // gamesWon
-  // gamesLost
+  // Create cells for games played
+  function gamesPlayedCell() {
+    makeCell(x.gamesPlayed);
+  };
+  gamesPlayedCell();
+
+  // Create cells for games won
+  function gamesWonCell() {
+    makeCell(x.gamesWon);
+  };
+  gamesWonCell();
+
+  // Create cells for games lost
+  function gamesLostCell() {
+    makeCell(x.gamesLost);
+  };
+  gamesLostCell();
+
+  // Create cells for runs scored
+  function runsForCell() {
+    makeCell(x.runsFor);
+  };
+  runsForCell();
+
+  // Create cells for runs against
+  function runsAgainstCell() {
+    makeCell(x.runsAgainst);
+  };
+  runsAgainstCell();
 };
 
 // API headers
@@ -47,7 +80,7 @@ const requestOptions = {
   redirect: 'follow',
 };
 
-// Class constructor for MLB teams with data
+// Class constructor for MLB teams with selected data
 class Team {
   constructor(name, id, logo, runsFor, runsAgainst, league, gamesPlayed, gamesWon, gamesLost) {
     this.name = name;
@@ -64,7 +97,7 @@ class Team {
 
 // Create array of Teams with selected data
 function createTeams(teams) {
-  const teamArray = teams.map(x => new Team(x.team.name, x.team.id, x.team.logo, x.points.for, x.points.against, x.group.name, x.games.played, x.games.win, x.games.lose));
+  const teamArray = teams.map(x => new Team(x.team.name, x.team.id, x.team.logo, x.points.for, x.points.against, x.group.name, x.games.played, x.games.win.total, x.games.lose.total));
   return teamArray;
 }
 
@@ -75,10 +108,12 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
     const teams = result.response[0];
     return teams;
   })
+  // Make array of teams of class Team
   .then(teams => {
     const teamList = createTeams(teams);
     return teamList;
   })
+  // Create DOM elements for data feetched from API
   .then(teamList => {
     console.log(teamList);
 
@@ -88,15 +123,16 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
         return x;
       });
     };
-
     createElements(teamList);
   })
   .catch(error => console.log('error', error));
 
 /*
 TODO
-create functionality like nameCell for each of the pieces of data below it in comments
-comment out code to make easier to follow
+need header cells for each column
+need numbers for what place the team is in on the left of each row
+need to add data cells for win percentage (which will be the initially sorted column)
+need to add data cells for run differential (where to enter logic for runsFor minus runsAagainst)
 create basic css styling to help with readability
 figure out if you need to move all of this code back to home.js (will that mess with git tracking?)
 then do you need to create new files for each version of standings (al/nl, divisions, etc)
