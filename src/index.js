@@ -131,6 +131,7 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 TODO
 need header cells for each column
 need numbers for what place the team is in on the left of each row
+need to figure out how to make logo images display
 need to add data cells for win percentage (which will be the initially sorted column)
 need to add data cells for run differential (where to enter logic for runsFor minus runsAagainst)
 create basic css styling to help with readability
