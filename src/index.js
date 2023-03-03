@@ -95,6 +95,7 @@ function createTeams(teams) {
 fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", requestOptions, {mode: 'cors'})
   .then(response => response.json())
   .then(result => {
+    console.log(result);
     const teams = result.response[0];
     return teams;
   })
