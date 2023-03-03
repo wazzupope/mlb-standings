@@ -27,46 +27,35 @@ function appendRow(x) {
   };
 
   // Create Cells for team logos
-  function logoCell() {
-    makeCell(x.logo);
+  function makeLogoCell(prop) {
+    const td = document.createElement('td');
+    const logo = document.createElement('img');
+    td.appendChild(logo);
+    logo.setAttribute = ('class', 'logo-img');
+    logo.src = prop;
+    td.setAttribute = ('class', 'table-cell');
+    td.setAttribute = ('class', 'logo-cell');
+    tr.appendChild(td);
   };
-  logoCell();
+  makeLogoCell(x.logo);
 
   // Create cells for team names
-  function nameCell() {
-    makeCell(x.name);
-  };
-  nameCell();
+  makeCell(x.name);
 
   // Create cells for games played
-  function gamesPlayedCell() {
-    makeCell(x.gamesPlayed);
-  };
-  gamesPlayedCell();
+  makeCell(x.gamesPlayed);
 
   // Create cells for games won
-  function gamesWonCell() {
-    makeCell(x.gamesWon);
-  };
-  gamesWonCell();
+  makeCell(x.gamesWon);
 
   // Create cells for games lost
-  function gamesLostCell() {
-    makeCell(x.gamesLost);
-  };
-  gamesLostCell();
+  makeCell(x.gamesLost);
 
   // Create cells for runs scored
-  function runsForCell() {
-    makeCell(x.runsFor);
-  };
-  runsForCell();
+  makeCell(x.runsFor);
 
   // Create cells for runs against
-  function runsAgainstCell() {
-    makeCell(x.runsAgainst);
-  };
-  runsAgainstCell();
+  makeCell(x.runsAgainst);
 };
 
 // API headers
@@ -129,8 +118,7 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 
 /*
 TODO
-need header cells for each column
-need numbers for what place the team is in on the left of each row
+?need numbers for what place the team is in on the left of each row
 need to figure out how to make logo images display
 need to add data cells for win percentage (which will be the initially sorted column)
 need to add data cells for run differential (where to enter logic for runsFor minus runsAagainst)
