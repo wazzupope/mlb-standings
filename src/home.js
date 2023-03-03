@@ -90,6 +90,13 @@ function createTable() {
   runsAgainstHeader.setAttribute('class', 'header-cell');
   tr.appendChild(runsAgainstHeader);
 
+  // Create Diff header in table
+  const runDiffHeader = document.createElement('td');
+  runDiffHeader.textContent = 'Diff';
+  runDiffHeader.setAttribute('class', 'table-cell');
+  runDiffHeader.setAttribute('class', 'header-cell');
+  tr.appendChild(runDiffHeader);
+
   return table;
 };
 
