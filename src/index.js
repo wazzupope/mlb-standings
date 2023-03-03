@@ -52,6 +52,9 @@ function appendRow(x) {
   // Create cells for games lost
   makeCell(x.gamesLost);
 
+  // Create cells for win percentage
+  makeCell(x.winPct);
+
   // Create cells for runs scored
   makeCell(x.runsFor);
 
@@ -72,7 +75,7 @@ const requestOptions = {
 
 // Class constructor for MLB teams with selected data
 class Team {
-  constructor(name, id, logo, runsFor, runsAgainst, league, gamesPlayed, gamesWon, gamesLost) {
+  constructor(name, id, logo, runsFor, runsAgainst, league, gamesPlayed, gamesWon, gamesLost, winPct) {
     this.name = name;
     this.id = id;
     this.logo = logo;
@@ -82,12 +85,13 @@ class Team {
     this.gamesPlayed = gamesPlayed;
     this.gamesWon = gamesWon;
     this.gamesLost = gamesLost;
+    this.winPct = winPct;
   };
 };
 
 // Create array of Teams with selected data
 function createTeams(teams) {
-  const teamArray = teams.map(x => new Team(x.team.name, x.team.id, x.team.logo, x.points.for, x.points.against, x.group.name, x.games.played, x.games.win.total, x.games.lose.total));
+  const teamArray = teams.map(x => new Team(x.team.name, x.team.id, x.team.logo, x.points.for, x.points.against, x.group.name, x.games.played, x.games.win.total, x.games.lose.total, x.games.win.percentage));
   return teamArray;
 }
 
