@@ -104,7 +104,7 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
     const teamList = createTeams(teams);
     return teamList;
   })
-  // Create DOM elements for data feetched from API
+  // Create DOM elements for data fetched from API
   .then(teamList => {
     console.log(teamList);
 
@@ -124,8 +124,7 @@ TODO
 *need to add data cells for win percentage (which will be the initially sorted column)
 *need to add data cells for run differential (where to enter logic for runsFor minus runsAagainst)
 more options for data to add: *games behind 1st place, streak, record over last 10 games (see espn app)
-*create basic css styling to help with readability
-*need a header (and footer?)
+*update styling
 figure out if you need to move all of this code back to home.js (will that mess with git tracking?)
 then do you need to create new files for each version of standings (al/nl, divisions, etc)
 *then need to figure out how to sort table by standings by AL/NL
