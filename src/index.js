@@ -60,6 +60,9 @@ function appendRow(x) {
 
   // Create cells for runs against
   makeCell(x.runsAgainst);
+
+  // Create cells for run differential
+  makeCell(x.runDiff);
 };
 
 // API headers
@@ -81,6 +84,7 @@ class Team {
     this.logo = logo;
     this.runsFor = runsFor;
     this.runsAgainst = runsAgainst;
+    this.runDiff = (runsFor - runsAgainst);
     this.league = league;
     this.gamesPlayed = gamesPlayed;
     this.gamesWon = gamesWon;
