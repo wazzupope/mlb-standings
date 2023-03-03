@@ -33,6 +33,7 @@ function appendRow(x) {
     td.appendChild(logo);
     logo.setAttribute = ('class', 'logo-img');
     logo.src = prop;
+    logo.height = "30";
     td.setAttribute = ('class', 'table-cell');
     td.setAttribute = ('class', 'logo-cell');
     tr.appendChild(td);
