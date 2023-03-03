@@ -69,6 +69,13 @@ function createTable() {
   gamesLostHeader.setAttribute('class', 'header-cell');
   tr.appendChild(gamesLostHeader);
 
+  // Create Win% header in table
+  const winPctHeader = document.createElement('td');
+  winPctHeader.textContent = 'Win%';
+  winPctHeader.setAttribute('class', 'table-cell');
+  winPctHeader.setAttribute('class', 'header-cell');
+  tr.appendChild(winPctHeader);
+
   // Create RS header in table
   const runsForHeader = document.createElement('td');
   runsForHeader.textContent = 'RS';
