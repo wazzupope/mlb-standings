@@ -14,9 +14,15 @@ function appendRow(x) {
   const tr = document.createElement('tr');
   const teamName = makeId(x.name);
   tr.setAttribute('class', 'tr');
-  tr.setAttribute('id', teamName)
-  const table = document.getElementById('table');
-  table.appendChild(tr);
+  tr.setAttribute('id', teamName);
+  const alTable = document.getElementById('al-table');
+  const nlTable = document.getElementById('nl-table');
+  if (x.league === 'American League') {
+    alTable.appendChild(tr);
+  }
+  else {
+    nlTable.appendChild(tr);
+  };
 
   // Function for creating table cells
   function makeCell(prop) {
