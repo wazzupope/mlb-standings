@@ -25,15 +25,15 @@ function createMain() {
 };
 
 // Create table in DOM
-function createTable() {
+function createTable(tableName) {
   // Create table element
   const table = document.createElement('table');
-  table.setAttribute('id', 'table');
+  table.setAttribute('id', tableName);
 
   // Create table row element for table headings
   const tr = document.createElement('tr');
   tr.setAttribute('class', 'tr');
-  tr.setAttribute('id', 'header-row')
+  tr.setAttribute('class', 'header-row')
   table.appendChild(tr);
 
   // Create blank header cell over logo column
@@ -116,7 +116,8 @@ function loadHome() {
 
   // Append table to main
   const main = document.getElementById('main');
-  main.appendChild(createTable());
+  main.appendChild(createTable(al-table));
+  main.appendChild(createTable(nl-table));
 };
 
 export {
