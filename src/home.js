@@ -116,8 +116,8 @@ function loadHome() {
 
   // Append table to main
   const main = document.getElementById('main');
-  main.appendChild(createTable(al-table));
-  main.appendChild(createTable(nl-table));
+  main.appendChild(createTable("al-table"));
+  main.appendChild(createTable("nl-table"));
 };
 
 export {
