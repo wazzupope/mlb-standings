@@ -20,6 +20,15 @@ function createMain() {
   // Create main element
   const main = document.createElement('main');
   main.setAttribute('id', 'main');
+  // Create container for AL table
+  const alContainer = document.createElement('section');
+  alContainer.setAttribute('id', 'al-container');
+  // Create container for NL table
+  const nlContainer = document.createElement('section');
+  nlContainer.setAttribute('id', 'nl-container');
+  // Append league containers to main
+  main.appendChild(alContainer);
+  main.appendChild(nlContainer);
 
   return main;
 };
@@ -33,7 +42,7 @@ function createTable(tableName) {
   // Create table row element for column headings
   const tr = document.createElement('tr');
   tr.setAttribute('class', 'tr');
-  tr.setAttribute('class', 'header-row')
+  tr.setAttribute('class', 'header-row');
   table.appendChild(tr);
 
   // Create blank header cell over logo column
@@ -114,10 +123,11 @@ function loadHome() {
   content.appendChild(createHeader());
   content.appendChild(createMain());
 
-  // Append table to main
-  const main = document.getElementById('main');
-  main.appendChild(createTable("al-table"));
-  main.appendChild(createTable("nl-table"));
+  // Append tables to AL and NL containers within main
+  const alContainer = document.getElementById('al-container');
+  const nlContainer = document.getElementById('nl-container');
+  alContainer.appendChild(createTable("al-table"));
+  nlContainer.appendChild(createTable("nl-table"));
 };
 
 export {
