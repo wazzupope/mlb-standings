@@ -29,6 +29,16 @@ function createMain() {
   // Append league containers to main
   main.appendChild(alContainer);
   main.appendChild(nlContainer);
+  // Create headers for league containers
+  const alHeader = document.createElement('h2');
+  alHeader.setAttribute('class', 'league-header');
+  alHeader.textContent = "American League";
+  const nlHeader = document.createElement('h2');
+  nlHeader.setAttribute('class', 'league-header');
+  nlHeader.textContent = "National League";
+  // Append headers for league containers
+  alContainer.appendChild(alHeader);
+  nlContainer.appendChild(nlHeader);
 
   return main;
 };
