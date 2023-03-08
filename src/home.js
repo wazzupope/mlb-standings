@@ -30,68 +30,68 @@ function createTable(tableName) {
   const table = document.createElement('table');
   table.setAttribute('id', tableName);
 
-  // Create table row element for table headings
+  // Create table row element for column headings
   const tr = document.createElement('tr');
   tr.setAttribute('class', 'tr');
   tr.setAttribute('class', 'header-row')
   table.appendChild(tr);
 
   // Create blank header cell over logo column
-  const blankCell = document.createElement('td');
+  const blankCell = document.createElement('th');
   blankCell.setAttribute('class', 'table-cell');
   tr.appendChild(blankCell);
 
   // Create Team header in table
-  const teamHeader = document.createElement('td');
+  const teamHeader = document.createElement('th');
   teamHeader.textContent = 'Team';
   teamHeader.setAttribute('class', 'table-cell');
   teamHeader.setAttribute('class', 'header-cell');
   tr.appendChild(teamHeader);
 
   // Create GP header in table
-  const gamesPlayedHeader = document.createElement('td');
+  const gamesPlayedHeader = document.createElement('th');
   gamesPlayedHeader.textContent = 'GP';
   gamesPlayedHeader.setAttribute('class', 'table-cell');
   gamesPlayedHeader.setAttribute('class', 'header-cell');
   tr.appendChild(gamesPlayedHeader);
 
   // Create W header in table
-  const gamesWonHeader = document.createElement('td');
+  const gamesWonHeader = document.createElement('th');
   gamesWonHeader.textContent = 'W';
   gamesWonHeader.setAttribute('class', 'table-cell');
   gamesWonHeader.setAttribute('class', 'header-cell');
   tr.appendChild(gamesWonHeader);
 
   // Create L header in table
-  const gamesLostHeader = document.createElement('td');
+  const gamesLostHeader = document.createElement('th');
   gamesLostHeader.textContent = 'L';
   gamesLostHeader.setAttribute('class', 'table-cell');
   gamesLostHeader.setAttribute('class', 'header-cell');
   tr.appendChild(gamesLostHeader);
 
   // Create Win% header in table
-  const winPctHeader = document.createElement('td');
+  const winPctHeader = document.createElement('th');
   winPctHeader.textContent = 'Win%';
   winPctHeader.setAttribute('class', 'table-cell');
   winPctHeader.setAttribute('class', 'header-cell');
   tr.appendChild(winPctHeader);
 
   // Create RS header in table
-  const runsForHeader = document.createElement('td');
+  const runsForHeader = document.createElement('th');
   runsForHeader.textContent = 'RS';
   runsForHeader.setAttribute('class', 'table-cell');
   runsForHeader.setAttribute('class', 'header-cell');
   tr.appendChild(runsForHeader);
 
   // Create RA header in table
-  const runsAgainstHeader = document.createElement('td');
+  const runsAgainstHeader = document.createElement('th');
   runsAgainstHeader.textContent = 'RA';
   runsAgainstHeader.setAttribute('class', 'table-cell');
   runsAgainstHeader.setAttribute('class', 'header-cell');
   tr.appendChild(runsAgainstHeader);
 
   // Create Diff header in table
-  const runDiffHeader = document.createElement('td');
+  const runDiffHeader = document.createElement('th');
   runDiffHeader.textContent = 'Diff';
   runDiffHeader.setAttribute('class', 'table-cell');
   runDiffHeader.setAttribute('class', 'header-cell');
