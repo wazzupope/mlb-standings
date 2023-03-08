@@ -12,14 +12,18 @@ td {
   vertical-align: middle;
 }
 
-#header {
-  display: flex;
-  justify-content: center;
-}
-
 .header-row {
   font-weight: 700;
 
+}
+
+.league-header {
+  text-align: center;
+}
+
+#header {
+  display: flex;
+  justify-content: center;
 }
 
 #main {
