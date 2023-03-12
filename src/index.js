@@ -134,6 +134,12 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 
 /*
 TODO
+create a function that creates the header rows and enters them at line 124 (pull ode from home.js)
+how to make createTable function in home.js less redundant
+put thead element around header rows
+put tbody element around where the rows from appendRow will go
+put buttons in header cells
+
 ?need numbers for what place the team is in on the left of each row
 get a space after the period in St.Louis
 more options for data to add: *games behind 1st place, streak, record over last 10 games (see espn app)
