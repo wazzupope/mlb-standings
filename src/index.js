@@ -267,19 +267,17 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 
 /*
 TODO
-how to make addTableHeaders function less redundant
-put buttons in header cells
-
-?need numbers for what place the team is in on the left of each row
+continue working on ability to sort by using header buttons
+update styling
+how to control cell height if team names split to two lines
+make tables side by side in desktop and vertical in mobile?
+add key as footer
 get a space after the period in St.Louis
+how to make addTableHeaders function less redundant
+need numbers for what place the team is in on the left of each row?
 more options for data to add: *games behind 1st place, streak, record over last 10 games (see espn app)
-*update styling
-*how to control cell height if team names split to two lines
-*make tables side by side in desktop and vertical in mobile?
-*add key as footer
 figure out if you need to move all of this code back to home.js (will that mess with git tracking?)
-then do you need to create new files for each version of standings (al/nl, divisions, etc)
-*then need to be able to sort by stat in each column, ascending/descending
-*figure out how to handle fetch error in .catch (article on phone)
-*add a waiting spinner while awaiting fetch
+new files for each version of standings (al/nl, divisions, etc)
+figure out how to handle fetch error in .catch (article on phone)
+add a waiting spinner while awaiting fetch
 */
