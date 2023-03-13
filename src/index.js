@@ -8,6 +8,94 @@ function makeId(string) {
   return string.replace(/\w+/g, (text) => text.charAt(0).toLowerCase() + text.substr(1)).replace(/\s/g, '-').replace('.', '-');
 };
 
+// Create table header row
+function addTableHeaders(element) {
+  const table = element;
+  // Create thead and tbody elements for table
+  const thead = document.createElement('thead');
+  thead.setAttribute('class', 'table-header');
+  table.appendChild(thead);
+  const tbody = document.createElement('tbody');
+  tbody.setAttribute('class', 'table-body');
+  table.appendChild(tbody);
+
+  // Create table row element for column headings
+  const tr = document.createElement('tr');
+  tr.setAttribute('class', 'tr');
+  tr.setAttribute('class', 'header-row');
+  thead.appendChild(tr);
+
+  // Create blank header cell over logo column
+  const blankCell = document.createElement('th');
+  blankCell.setAttribute('class', 'table-cell');
+  tr.appendChild(blankCell);
+
+  // Create Team header in table
+  const teamHeader = document.createElement('th');
+  teamHeader.textContent = 'Team';
+  teamHeader.setAttribute('class', 'table-cell');
+  teamHeader.setAttribute('class', 'header-cell');
+  tr.appendChild(teamHeader);
+
+  // Create GP header in table
+  const gamesPlayedHeader = document.createElement('th');
+  gamesPlayedHeader.textContent = 'GP';
+  gamesPlayedHeader.setAttribute('class', 'table-cell');
+  gamesPlayedHeader.setAttribute('class', 'header-cell');
+  tr.appendChild(gamesPlayedHeader);
+
+  // Create W header in table
+  const gamesWonHeader = document.createElement('th');
+  gamesWonHeader.textContent = 'W';
+  gamesWonHeader.setAttribute('class', 'table-cell');
+  gamesWonHeader.setAttribute('class', 'header-cell');
+  tr.appendChild(gamesWonHeader);
+
+  // Create L header in table
+  const gamesLostHeader = document.createElement('th');
+  gamesLostHeader.textContent = 'L';
+  gamesLostHeader.setAttribute('class', 'table-cell');
+  gamesLostHeader.setAttribute('class', 'header-cell');
+  tr.appendChild(gamesLostHeader);
+
+  // Create Win% header in table
+  const winPctHeader = document.createElement('th');
+  winPctHeader.textContent = 'Win%';
+  winPctHeader.setAttribute('class', 'table-cell');
+  winPctHeader.setAttribute('class', 'header-cell');
+  tr.appendChild(winPctHeader);
+
+  // Create RS header in table
+  const runsForHeader = document.createElement('th');
+  runsForHeader.textContent = 'RS';
+  runsForHeader.setAttribute('class', 'table-cell');
+  runsForHeader.setAttribute('class', 'header-cell');
+  tr.appendChild(runsForHeader);
+
+  // Create RA header in table
+  const runsAgainstHeader = document.createElement('th');
+  runsAgainstHeader.textContent = 'RA';
+  runsAgainstHeader.setAttribute('class', 'table-cell');
+  runsAgainstHeader.setAttribute('class', 'header-cell');
+  tr.appendChild(runsAgainstHeader);
+
+  // Create Diff header in table
+  const runDiffHeader = document.createElement('th');
+  runDiffHeader.textContent = 'Diff';
+  runDiffHeader.setAttribute('class', 'table-cell');
+  runDiffHeader.setAttribute('class', 'header-cell');
+  tr.appendChild(runDiffHeader);
+};
+
+// Function that runs table header row creation for each table
+function createTableHeaders() {
+  const alTable = document.getElementById('al-table');
+  const nlTable = document.getElementById('nl-table');
+
+  addTableHeaders(alTable);
+  addTableHeaders(nlTable);
+};
+
 // DOM creation of table
 function appendRow(x) {
   // Create table rows
@@ -121,7 +209,8 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
   // Create DOM elements for data fetched from API
   .then(teamList => {
     console.log(teamList);
-
+    // Create table header rows
+    createTableHeaders();
     function createElements(arr) {
       arr.map(x => {
         appendRow(x);
@@ -134,7 +223,7 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 
 /*
 TODO
-create a function that creates the header rows and enters them at line 124 (pull ode from home.js)
+create a function that creates the header rows and enters them at line 124 (pull code from home.js)
 how to make createTable function in home.js less redundant
 put thead element around header rows
 put tbody element around where the rows from appendRow will go
