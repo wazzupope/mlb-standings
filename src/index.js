@@ -11,7 +11,8 @@ function makeId(string) {
 // Create table header row
 function addTableHeaders(element) {
   const table = element;
-  const id = `${table.id}-body`;
+  const {id} = table;
+  const tableBodyId = `${table.id}-body`;
 
   // Create thead and tbody elements for table
   const thead = document.createElement('thead');
@@ -19,7 +20,7 @@ function addTableHeaders(element) {
   table.appendChild(thead);
   const tbody = document.createElement('tbody');
   tbody.setAttribute('class', 'table-body');
-  tbody.setAttribute('id', id);
+  tbody.setAttribute('id', tableBodyId);
   table.appendChild(tbody);
 
   // Create table row element for column headings
@@ -33,61 +34,101 @@ function addTableHeaders(element) {
   blankCell.setAttribute('class', 'table-cell');
   tr.appendChild(blankCell);
 
-  // Create Team header in table
+  // Create Team header in table with button
   const teamHeader = document.createElement('th');
-  teamHeader.textContent = 'Team';
   teamHeader.setAttribute('class', 'table-cell');
   teamHeader.setAttribute('class', 'header-cell');
   tr.appendChild(teamHeader);
+  const teamHeaderButton = document.createElement('button');
+  teamHeaderButton.setAttribute('class', 'header-button');
+  teamHeaderButton.setAttribute('class', 'team-header-button');
+  teamHeaderButton.setAttribute('id', `${id}-team-button`);
+  teamHeaderButton.textContent = 'Team';
+  teamHeader.appendChild(teamHeaderButton);
 
-  // Create GP header in table
+  // Create GP header in table with button
   const gamesPlayedHeader = document.createElement('th');
-  gamesPlayedHeader.textContent = 'GP';
   gamesPlayedHeader.setAttribute('class', 'table-cell');
   gamesPlayedHeader.setAttribute('class', 'header-cell');
   tr.appendChild(gamesPlayedHeader);
+  const gamesPlayedHeaderButton = document.createElement('button');
+  gamesPlayedHeaderButton.setAttribute('class', 'header-button');
+  gamesPlayedHeaderButton.setAttribute('class', 'games-played-header-button');
+  gamesPlayedHeaderButton.setAttribute('id', `${id}-games-played-button`);
+  gamesPlayedHeaderButton.textContent = 'GP';
+  gamesPlayedHeader.appendChild(gamesPlayedHeaderButton);
 
-  // Create W header in table
+  // Create W header in table with button
   const gamesWonHeader = document.createElement('th');
-  gamesWonHeader.textContent = 'W';
   gamesWonHeader.setAttribute('class', 'table-cell');
   gamesWonHeader.setAttribute('class', 'header-cell');
   tr.appendChild(gamesWonHeader);
+  const gamesWonHeaderButton = document.createElement('button');
+  gamesWonHeaderButton.setAttribute('class', 'header-button');
+  gamesWonHeaderButton.setAttribute('class', 'games-won-header-button');
+  gamesWonHeaderButton.setAttribute('id', `${id}-games-won-button`);
+  gamesWonHeaderButton.textContent = 'W';
+  gamesWonHeader.appendChild(gamesWonHeaderButton);
 
-  // Create L header in table
+  // Create L header in table with button
   const gamesLostHeader = document.createElement('th');
-  gamesLostHeader.textContent = 'L';
   gamesLostHeader.setAttribute('class', 'table-cell');
   gamesLostHeader.setAttribute('class', 'header-cell');
   tr.appendChild(gamesLostHeader);
+  const gamesLostHeaderButton = document.createElement('button');
+  gamesLostHeaderButton.setAttribute('class', 'header-button');
+  gamesLostHeaderButton.setAttribute('class', 'games-lost-header-button');
+  gamesLostHeaderButton.setAttribute('id', `${id}-games-lost-button`);
+  gamesLostHeaderButton.textContent = 'L';
+  gamesLostHeader.appendChild(gamesLostHeaderButton);
 
-  // Create Win% header in table
+  // Create Win% header in table with button
   const winPctHeader = document.createElement('th');
-  winPctHeader.textContent = 'Win%';
   winPctHeader.setAttribute('class', 'table-cell');
   winPctHeader.setAttribute('class', 'header-cell');
   tr.appendChild(winPctHeader);
+  const winPctHeaderButton = document.createElement('button');
+  winPctHeaderButton.setAttribute('class', 'header-button');
+  winPctHeaderButton.setAttribute('class', 'win-pct-header-button');
+  winPctHeaderButton.setAttribute('id', `${id}-win-pct-button`);
+  winPctHeaderButton.textContent = 'Win%';
+  winPctHeader.appendChild(winPctHeaderButton);
 
-  // Create RS header in table
+  // Create RS header in table with button
   const runsForHeader = document.createElement('th');
-  runsForHeader.textContent = 'RS';
   runsForHeader.setAttribute('class', 'table-cell');
   runsForHeader.setAttribute('class', 'header-cell');
   tr.appendChild(runsForHeader);
+  const runsForHeaderButton = document.createElement('button');
+  runsForHeaderButton.setAttribute('class', 'header-button');
+  runsForHeaderButton.setAttribute('class', 'runs-for-header-button');
+  runsForHeaderButton.setAttribute('id', `${id}-runs-for-button`);
+  runsForHeaderButton.textContent = 'RS';
+  runsForHeader.appendChild(runsForHeaderButton);
 
-  // Create RA header in table
+  // Create RA header in table with button
   const runsAgainstHeader = document.createElement('th');
-  runsAgainstHeader.textContent = 'RA';
   runsAgainstHeader.setAttribute('class', 'table-cell');
   runsAgainstHeader.setAttribute('class', 'header-cell');
   tr.appendChild(runsAgainstHeader);
+  const runsAgainstHeaderButton = document.createElement('button');
+  runsAgainstHeaderButton.setAttribute('class', 'header-button');
+  runsAgainstHeaderButton.setAttribute('class', 'runs-against-header-button');
+  runsAgainstHeaderButton.setAttribute('id', `${id}-runs-against-button`);
+  runsAgainstHeaderButton.textContent = 'RA';
+  runsAgainstHeader.appendChild(runsAgainstHeaderButton);
 
-  // Create Diff header in table
+  // Create Diff header in table with button
   const runDiffHeader = document.createElement('th');
-  runDiffHeader.textContent = 'Diff';
   runDiffHeader.setAttribute('class', 'table-cell');
   runDiffHeader.setAttribute('class', 'header-cell');
   tr.appendChild(runDiffHeader);
+  const runDiffHeaderButton = document.createElement('button');
+  runDiffHeaderButton.setAttribute('class', 'header-button');
+  runDiffHeaderButton.setAttribute('class', 'run-diff-header-button');
+  runDiffHeaderButton.setAttribute('id', `${id}-run-diff-button`);
+  runDiffHeaderButton.textContent = 'Diff';
+  runDiffHeader.appendChild(runDiffHeaderButton);
 };
 
 // Function that runs table header row creation for each table
@@ -226,17 +267,13 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 
 /*
 TODO
-create a function that creates the header rows and enters them at line 124 (pull code from home.js)
-how to make createTable function in home.js less redundant
-put thead element around header rows
-put tbody element around where the rows from appendRow will go
+how to make addTableHeaders function less redundant
 put buttons in header cells
 
 ?need numbers for what place the team is in on the left of each row
 get a space after the period in St.Louis
 more options for data to add: *games behind 1st place, streak, record over last 10 games (see espn app)
 *update styling
-*add title for each table AL and NL
 *how to control cell height if team names split to two lines
 *make tables side by side in desktop and vertical in mobile?
 *add key as footer
