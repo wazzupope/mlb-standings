@@ -11,12 +11,15 @@ function makeId(string) {
 // Create table header row
 function addTableHeaders(element) {
   const table = element;
+  const id = `${table.id}-body`;
+
   // Create thead and tbody elements for table
   const thead = document.createElement('thead');
   thead.setAttribute('class', 'table-header');
   table.appendChild(thead);
   const tbody = document.createElement('tbody');
   tbody.setAttribute('class', 'table-body');
+  tbody.setAttribute('id', id);
   table.appendChild(tbody);
 
   // Create table row element for column headings
@@ -103,13 +106,13 @@ function appendRow(x) {
   const teamName = makeId(x.name);
   tr.setAttribute('class', 'tr');
   tr.setAttribute('id', teamName);
-  const alTable = document.getElementById('al-table');
-  const nlTable = document.getElementById('nl-table');
+  const alTableBody = document.getElementById('al-table-body');
+  const nlTableBody = document.getElementById('nl-table-body');
   if (x.league === 'American League') {
-    alTable.appendChild(tr);
+    alTableBody.appendChild(tr);
   }
   else {
-    nlTable.appendChild(tr);
+    nlTableBody.appendChild(tr);
   };
 
   // Function for creating table cells
