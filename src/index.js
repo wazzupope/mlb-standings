@@ -151,9 +151,11 @@ function appendRow(x) {
   const nlTableBody = document.getElementById('nl-table-body');
   if (x.league === 'American League') {
     alTableBody.appendChild(tr);
+    tr.setAttribute('class', 'al-row');
   }
   else {
     nlTableBody.appendChild(tr);
+    tr.setAttribute('class', 'nl-row');
   };
 
   // Function for creating table cells
@@ -264,6 +266,8 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
     createElements(teamList);
   })
   .catch(error => console.log('error', error));
+
+const alArray = document.querySelectorAll
 
 /*
 TODO
