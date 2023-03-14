@@ -159,50 +159,54 @@ function appendRow(x) {
   };
 
   // Function for creating table cells
-  function makeCell(prop) {
+  function makeCell(prop, key) {
     const td = document.createElement('td');
     td.textContent = prop;
-    td.setAttribute = ('class', 'table-cell');
+    td.setAttribute('class', 'table-cell');
+    td.setAttribute('class', key);
     tr.appendChild(td);
   };
+
+  // Create array of object keys
+  const objKeys = ['team', 'games-played', 'games-won', 'games-lost', 'win-pct', 'runs-for', 'runs-against', 'run-diff'];
 
   // Create Cells for team logos
   function makeLogoCell(prop) {
     const td = document.createElement('td');
     const logo = document.createElement('img');
     td.appendChild(logo);
-    logo.setAttribute = ('class', 'logo-img');
+    logo.setAttribute('class', 'logo-img');
     logo.src = prop;
     logo.height = "30";
-    td.setAttribute = ('class', 'table-cell');
-    td.setAttribute = ('class', 'logo-cell');
+    td.setAttribute('class', 'table-cell');
+    td.setAttribute('class', 'logo-cell');
     tr.appendChild(td);
   };
   makeLogoCell(x.logo);
 
   // Create cells for team names
-  makeCell(x.name);
+  makeCell(x.name, objKeys[0]);
 
   // Create cells for games played
-  makeCell(x.gamesPlayed);
+  makeCell(x.gamesPlayed, objKeys[1]);
 
   // Create cells for games won
-  makeCell(x.gamesWon);
+  makeCell(x.gamesWon, objKeys[2]);
 
   // Create cells for games lost
-  makeCell(x.gamesLost);
+  makeCell(x.gamesLost, objKeys[3]);
 
   // Create cells for win percentage
-  makeCell(x.winPct);
+  makeCell(x.winPct, objKeys[4]);
 
   // Create cells for runs scored
-  makeCell(x.runsFor);
+  makeCell(x.runsFor, objKeys[5]);
 
   // Create cells for runs against
-  makeCell(x.runsAgainst);
+  makeCell(x.runsAgainst, objKeys[6]);
 
   // Create cells for run differential
-  makeCell(x.runDiff);
+  makeCell(x.runDiff, objKeys[7]);
 };
 
 // API headers
@@ -237,7 +241,15 @@ class Team {
 function createTeams(teams) {
   const teamArray = teams.map(x => new Team(x.team.name, x.team.id, x.team.logo, x.points.for, x.points.against, x.group.name, x.games.played, x.games.win.total, x.games.lose.total, x.games.win.percentage));
   return teamArray;
-}
+};
+
+// Create array of table rows for each league
+function createLeagueRowArray() {
+  const alArray = document.querySelectorAll('.al-row');
+  const nlArray = document.querySelectorAll('.nl-row');
+  console.log(alArray);
+  console.log(nlArray);
+};
 
 // Fetch request to API for MLB standings
 fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", requestOptions, {mode: 'cors'})
@@ -264,14 +276,19 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
       });
     };
     createElements(teamList);
+    return teamList;
+  })
+  .then(teamList => {
+    createLeagueRowArray();
+
+    return teamList;
   })
   .catch(error => console.log('error', error));
-
-const alArray = document.querySelectorAll
 
 /*
 TODO
 continue working on ability to sort by using header buttons
+in fetch below createLeagueRowArray, need to work on using these arrays to sort 
 update styling
 how to control cell height if team names split to two lines
 make tables side by side in desktop and vertical in mobile?
