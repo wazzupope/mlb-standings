@@ -319,6 +319,22 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 /*
 TODO
 continue working on ability to sort by using header buttons
+going to have to mess with appendRow to clean it up and make it look more like the createRow function in the example
+
+use this portion of the example to help guide that process
+
+const createRow = (obj) => {
+  const row = document.createElement("tr");
+  const objKeys = Object.keys(obj);
+  objKeys.map((key) => {
+    const cell = document.createElement("td");
+    cell.setAttribute("data-attr", key);
+    cell.innerHTML = obj[key];
+    row.appendChild(cell);
+  });
+  return row;
+};
+
 in fetch below createLeagueRowArray, need to work on using these arrays to sort 
 update styling
 how to control cell height if team names split to two lines
