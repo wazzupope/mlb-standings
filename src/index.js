@@ -251,6 +251,37 @@ function createLeagueRowArray() {
   console.log(nlArray);
 };
 
+function sortData(data, param, direction = "asc") {
+  // Get table body elements
+  const alTableBody = document.getElementById('al-table-body');
+  const nlTableBody = document.getElementById('nl-table-body');
+  // Clear table body elements
+  alTableBody.innerHTML = '';
+  nlTableBody.innerHTML = '';
+  // Create function to sort rows based on parameter
+  const sortedData =
+    direction == "asc"
+      ? [...data].sort((a, b) => {
+        if (a[param] < b[param]) {
+          return -1;
+        }
+        if (a[param] < b[param]) {
+          return 1;
+        }
+        return 0;
+      })
+      : [...data].sort((a, b) => {
+        if (b[param] < a[param]) {
+          return -1;
+        }
+        if (b[param] > a[param]) {
+          return 1;
+        }
+        return 0;
+      });
+  // getTableContent(sortedData);  
+};
+
 // Fetch request to API for MLB standings
 fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", requestOptions, {mode: 'cors'})
   .then(response => response.json())
