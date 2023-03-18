@@ -140,8 +140,33 @@ function createTableHeaders() {
   addTableHeaders(nlTable);
 };
 
+// Create Cells for team logos
+function makeLogoCell(prop) {
+  const td = document.createElement('td');
+  const logo = document.createElement('img');
+  td.appendChild(logo);
+  logo.setAttribute('class', 'logo-img');
+  logo.src = prop;
+  logo.height = "30";
+  td.setAttribute('class', 'table-cell');
+  td.setAttribute('class', 'logo-cell');
+  tr.appendChild(td);
+};
+
+// Function for creating table cells
+function makeCell(prop, key) {
+  const td = document.createElement('td');
+  td.textContent = prop;
+  td.setAttribute('class', 'table-cell');
+  td.setAttribute('class', key);
+  tr.appendChild(td);
+};
+
+// Create array of object keys
+const objKeys = ['team', 'games-played', 'games-won', 'games-lost', 'win-pct', 'runs-for', 'runs-against', 'run-diff'];
+
 // DOM creation of table
-function appendRow(x) {
+function createRow(x) {
   // Create table rows
   const tr = document.createElement('tr');
   const teamName = makeId(x.name);
@@ -158,30 +183,6 @@ function appendRow(x) {
     tr.setAttribute('class', 'nl-row');
   };
 
-  // Function for creating table cells
-  function makeCell(prop, key) {
-    const td = document.createElement('td');
-    td.textContent = prop;
-    td.setAttribute('class', 'table-cell');
-    td.setAttribute('class', key);
-    tr.appendChild(td);
-  };
-
-  // Create array of object keys
-  const objKeys = ['team', 'games-played', 'games-won', 'games-lost', 'win-pct', 'runs-for', 'runs-against', 'run-diff'];
-
-  // Create Cells for team logos
-  function makeLogoCell(prop) {
-    const td = document.createElement('td');
-    const logo = document.createElement('img');
-    td.appendChild(logo);
-    logo.setAttribute('class', 'logo-img');
-    logo.src = prop;
-    logo.height = "30";
-    td.setAttribute('class', 'table-cell');
-    td.setAttribute('class', 'logo-cell');
-    tr.appendChild(td);
-  };
   makeLogoCell(x.logo);
 
   // Create cells for team names
@@ -302,7 +303,7 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
     createTableHeaders();
     function createElements(arr) {
       arr.map(x => {
-        appendRow(x);
+        createRow(x);
         return x;
       });
     };
@@ -319,7 +320,7 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 /*
 TODO
 continue working on ability to sort by using header buttons
-going to have to mess with appendRow to clean it up and make it look more like the createRow function in the example
+going to have to mess with createRow to clean it up and make it look more like the createRow function in the example
 
 use this portion of the example to help guide that process
 
