@@ -175,11 +175,11 @@ function createRow(x) {
   const alTableBody = document.getElementById('al-table-body');
   const nlTableBody = document.getElementById('nl-table-body');
   if (x.league === 'American League') {
-    alTableBody.appendChild(tr);
+    alTableBody.appendChild(row);
     row.setAttribute('class', 'al-row');
   }
   else {
-    nlTableBody.appendChild(tr);
+    nlTableBody.appendChild(row);
     row.setAttribute('class', 'nl-row');
   };
 
