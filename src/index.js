@@ -141,16 +141,16 @@ function createTableHeaders() {
 };
 
 // Create Cells for team logos
-function makeLogoCell(prop) {
+function makeLogoCell(obj) {
   const cell = document.createElement('td');
   const logo = document.createElement('img');
   cell.appendChild(logo);
   logo.setAttribute('class', 'logo-img');
-  logo.src = prop;
+  logo.src = obj.logo;
   logo.height = "30";
   cell.setAttribute('class', 'table-cell');
   cell.setAttribute('class', 'logo-cell');
-  row.appendChild(cell);
+  return cell;
 };
 
 // Function for creating table cells
@@ -159,22 +159,22 @@ function makeCell(prop, key) {
   cell.textContent = prop;
   cell.setAttribute('class', 'table-cell');
   cell.setAttribute('class', key);
-  row.appendChild(cell);
+  return cell;
 };
 
 // Create array of object keys
 const objKeys = ['team', 'games-played', 'games-won', 'games-lost', 'win-pct', 'runs-for', 'runs-against', 'run-diff'];
 
 // DOM creation of table
-function createRow(x) {
+function createRow(obj) {
   // Create table rows
   const row = document.createElement('tr');
-  const teamName = makeId(x.name);
+  const teamName = makeId(obj.name);
   row.setAttribute('class', 'row');
   row.setAttribute('id', teamName);
   const alTableBody = document.getElementById('al-table-body');
   const nlTableBody = document.getElementById('nl-table-body');
-  if (x.league === 'American League') {
+  if (obj.league === 'American League') {
     alTableBody.appendChild(row);
     row.setAttribute('class', 'al-row');
   }
@@ -183,31 +183,42 @@ function createRow(x) {
     row.setAttribute('class', 'nl-row');
   };
 
-  makeLogoCell(x.logo);
+  const logoCell = makeLogoCell(obj);
 
-  // Create cells for team names
-  makeCell(x.name, objKeys[0]);
+  // need to figure something else out for objKeys? delete the above array declaration?
+  const objKeys = Object.keys(obj);
+  objKeys.map((key) => {
 
-  // Create cells for games played
-  makeCell(x.gamesPlayed, objKeys[1]);
+    // need to figure out what goes in here for prop and key
+    row.appendChild(makeCell(prop, key));
+  });
+  return row;
+  
+  // makeLogoCell(obj.logo);
 
-  // Create cells for games won
-  makeCell(x.gamesWon, objKeys[2]);
+  // // Create cells for team names
+  // makeCell(obj.name, objKeys[0]);
 
-  // Create cells for games lost
-  makeCell(x.gamesLost, objKeys[3]);
+  // // Create cells for games played
+  // makeCell(obj.gamesPlayed, objKeys[1]);
 
-  // Create cells for win percentage
-  makeCell(x.winPct, objKeys[4]);
+  // // Create cells for games won
+  // makeCell(obj.gamesWon, objKeys[2]);
 
-  // Create cells for runs scored
-  makeCell(x.runsFor, objKeys[5]);
+  // // Create cells for games lost
+  // makeCell(obj.gamesLost, objKeys[3]);
 
-  // Create cells for runs against
-  makeCell(x.runsAgainst, objKeys[6]);
+  // // Create cells for win percentage
+  // makeCell(obj.winPct, objKeys[4]);
 
-  // Create cells for run differential
-  makeCell(x.runDiff, objKeys[7]);
+  // // Create cells for runs scored
+  // makeCell(obj.runsFor, objKeys[5]);
+
+  // // Create cells for runs against
+  // makeCell(obj.runsAgainst, objKeys[6]);
+
+  // // Create cells for run differential
+  // makeCell(obj.runDiff, objKeys[7]);
 };
 
 // API headers
