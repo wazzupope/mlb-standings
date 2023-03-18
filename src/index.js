@@ -150,7 +150,7 @@ function makeLogoCell(prop) {
   logo.height = "30";
   cell.setAttribute('class', 'table-cell');
   cell.setAttribute('class', 'logo-cell');
-  tr.appendChild(cell);
+  row.appendChild(cell);
 };
 
 // Function for creating table cells
@@ -159,7 +159,7 @@ function makeCell(prop, key) {
   cell.textContent = prop;
   cell.setAttribute('class', 'table-cell');
   cell.setAttribute('class', key);
-  tr.appendChild(cell);
+  row.appendChild(cell);
 };
 
 // Create array of object keys
@@ -168,19 +168,19 @@ const objKeys = ['team', 'games-played', 'games-won', 'games-lost', 'win-pct', '
 // DOM creation of table
 function createRow(x) {
   // Create table rows
-  const tr = document.createElement('tr');
+  const row = document.createElement('tr');
   const teamName = makeId(x.name);
-  tr.setAttribute('class', 'tr');
-  tr.setAttribute('id', teamName);
+  row.setAttribute('class', 'row');
+  row.setAttribute('id', teamName);
   const alTableBody = document.getElementById('al-table-body');
   const nlTableBody = document.getElementById('nl-table-body');
   if (x.league === 'American League') {
     alTableBody.appendChild(tr);
-    tr.setAttribute('class', 'al-row');
+    row.setAttribute('class', 'al-row');
   }
   else {
     nlTableBody.appendChild(tr);
-    tr.setAttribute('class', 'nl-row');
+    row.setAttribute('class', 'nl-row');
   };
 
   makeLogoCell(x.logo);
