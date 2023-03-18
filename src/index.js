@@ -142,24 +142,24 @@ function createTableHeaders() {
 
 // Create Cells for team logos
 function makeLogoCell(prop) {
-  const td = document.createElement('td');
+  const cell = document.createElement('td');
   const logo = document.createElement('img');
-  td.appendChild(logo);
+  cell.appendChild(logo);
   logo.setAttribute('class', 'logo-img');
   logo.src = prop;
   logo.height = "30";
-  td.setAttribute('class', 'table-cell');
-  td.setAttribute('class', 'logo-cell');
-  tr.appendChild(td);
+  cell.setAttribute('class', 'table-cell');
+  cell.setAttribute('class', 'logo-cell');
+  tr.appendChild(cell);
 };
 
 // Function for creating table cells
 function makeCell(prop, key) {
-  const td = document.createElement('td');
-  td.textContent = prop;
-  td.setAttribute('class', 'table-cell');
-  td.setAttribute('class', key);
-  tr.appendChild(td);
+  const cell = document.createElement('td');
+  cell.textContent = prop;
+  cell.setAttribute('class', 'table-cell');
+  cell.setAttribute('class', key);
+  tr.appendChild(cell);
 };
 
 // Create array of object keys
