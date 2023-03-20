@@ -184,31 +184,31 @@ function createRow(obj) {
   };
 
   // Create cells for logos
-  makeLogoCell(obj);
+  row.appendChild(makeLogoCell(obj));
 
   // Create cells for team names
-  makeCell(obj.name, objKeys[0]);
+  row.appendChild(makeCell(obj.name, objKeys[0]));
 
   // Create cells for games played
-  makeCell(obj.gamesPlayed, objKeys[1]);
+  row.appendChild(makeCell(obj.gamesPlayed, objKeys[1]));
 
   // Create cells for games won
-  makeCell(obj.gamesWon, objKeys[2]);
+  row.appendChild(makeCell(obj.gamesWon, objKeys[2]));
 
   // Create cells for games lost
-  makeCell(obj.gamesLost, objKeys[3]);
+  row.appendChild(makeCell(obj.gamesLost, objKeys[3]));
 
   // Create cells for win percentage
-  makeCell(obj.winPct, objKeys[4]);
+  row.appendChild(makeCell(obj.winPct, objKeys[4]));
 
   // Create cells for runs scored
-  makeCell(obj.runsFor, objKeys[5]);
+  row.appendChild(makeCell(obj.runsFor, objKeys[5]));
 
   // Create cells for runs against
-  makeCell(obj.runsAgainst, objKeys[6]);
+  row.appendChild(makeCell(obj.runsAgainst, objKeys[6]));
 
   // Create cells for run differential
-  makeCell(obj.runDiff, objKeys[7]);
+  row.appendChild(makeCell(obj.runDiff, objKeys[7]));
 };
 
 // API headers
