@@ -11,7 +11,7 @@ function makeId(string) {
 // Create table header row
 function addTableHeaders(element) {
   const table = element;
-  const {id} = table;
+  // const {id} = table;
   const tableBodyId = `${table.id}-body`;
 
   // Create thead and tbody elements for table
@@ -42,7 +42,7 @@ function addTableHeaders(element) {
   const teamHeaderButton = document.createElement('button');
   teamHeaderButton.setAttribute('class', 'header-button');
   teamHeaderButton.setAttribute('class', 'team-header-button');
-  teamHeaderButton.setAttribute('id', `${id}-team-button`);
+  teamHeaderButton.setAttribute('id', 'team');
   teamHeaderButton.textContent = 'Team';
   teamHeader.appendChild(teamHeaderButton);
 
@@ -54,7 +54,7 @@ function addTableHeaders(element) {
   const gamesPlayedHeaderButton = document.createElement('button');
   gamesPlayedHeaderButton.setAttribute('class', 'header-button');
   gamesPlayedHeaderButton.setAttribute('class', 'games-played-header-button');
-  gamesPlayedHeaderButton.setAttribute('id', `${id}-games-played-button`);
+  gamesPlayedHeaderButton.setAttribute('id', 'gamesPlayed');
   gamesPlayedHeaderButton.textContent = 'GP';
   gamesPlayedHeader.appendChild(gamesPlayedHeaderButton);
 
@@ -66,7 +66,7 @@ function addTableHeaders(element) {
   const gamesWonHeaderButton = document.createElement('button');
   gamesWonHeaderButton.setAttribute('class', 'header-button');
   gamesWonHeaderButton.setAttribute('class', 'games-won-header-button');
-  gamesWonHeaderButton.setAttribute('id', `${id}-games-won-button`);
+  gamesWonHeaderButton.setAttribute('id', 'gamesWon');
   gamesWonHeaderButton.textContent = 'W';
   gamesWonHeader.appendChild(gamesWonHeaderButton);
 
@@ -78,7 +78,7 @@ function addTableHeaders(element) {
   const gamesLostHeaderButton = document.createElement('button');
   gamesLostHeaderButton.setAttribute('class', 'header-button');
   gamesLostHeaderButton.setAttribute('class', 'games-lost-header-button');
-  gamesLostHeaderButton.setAttribute('id', `${id}-games-lost-button`);
+  gamesLostHeaderButton.setAttribute('id', 'gamesLost');
   gamesLostHeaderButton.textContent = 'L';
   gamesLostHeader.appendChild(gamesLostHeaderButton);
 
@@ -90,7 +90,7 @@ function addTableHeaders(element) {
   const winPctHeaderButton = document.createElement('button');
   winPctHeaderButton.setAttribute('class', 'header-button');
   winPctHeaderButton.setAttribute('class', 'win-pct-header-button');
-  winPctHeaderButton.setAttribute('id', `${id}-win-pct-button`);
+  winPctHeaderButton.setAttribute('id', 'winPct');
   winPctHeaderButton.textContent = 'Win%';
   winPctHeader.appendChild(winPctHeaderButton);
 
@@ -102,7 +102,7 @@ function addTableHeaders(element) {
   const runsForHeaderButton = document.createElement('button');
   runsForHeaderButton.setAttribute('class', 'header-button');
   runsForHeaderButton.setAttribute('class', 'runs-for-header-button');
-  runsForHeaderButton.setAttribute('id', `${id}-runs-for-button`);
+  runsForHeaderButton.setAttribute('id', 'runsFor');
   runsForHeaderButton.textContent = 'RS';
   runsForHeader.appendChild(runsForHeaderButton);
 
@@ -114,7 +114,7 @@ function addTableHeaders(element) {
   const runsAgainstHeaderButton = document.createElement('button');
   runsAgainstHeaderButton.setAttribute('class', 'header-button');
   runsAgainstHeaderButton.setAttribute('class', 'runs-against-header-button');
-  runsAgainstHeaderButton.setAttribute('id', `${id}-runs-against-button`);
+  runsAgainstHeaderButton.setAttribute('id', 'runsAgainst');
   runsAgainstHeaderButton.textContent = 'RA';
   runsAgainstHeader.appendChild(runsAgainstHeaderButton);
 
@@ -126,7 +126,7 @@ function addTableHeaders(element) {
   const runDiffHeaderButton = document.createElement('button');
   runDiffHeaderButton.setAttribute('class', 'header-button');
   runDiffHeaderButton.setAttribute('class', 'run-diff-header-button');
-  runDiffHeaderButton.setAttribute('id', `${id}-run-diff-button`);
+  runDiffHeaderButton.setAttribute('id', 'runDiff');
   runDiffHeaderButton.textContent = 'Diff';
   runDiffHeader.appendChild(runDiffHeaderButton);
 };
@@ -167,9 +167,11 @@ const objKeys = ['team', 'games-played', 'games-won', 'games-lost', 'win-pct', '
 
 // DOM creation of table
 function createRow(obj) {
+  console.log(Object.keys(obj));
+  const objName = obj.name;
   // Create table rows
   const row = document.createElement('tr');
-  const teamName = makeId(obj.name);
+  const teamName = makeId(objName);
   row.setAttribute('class', 'row');
   row.setAttribute('id', teamName);
   const alTableBody = document.getElementById('al-table-body');
@@ -245,7 +247,12 @@ function createTeams(teams) {
   return teamArray;
 };
 
-
+function createElements(arr) {
+  arr.map(x => {
+    createRow(x);
+    return x;
+  });
+};
 
 function sortData(data, param, direction = "asc") {
   // Get table body elements
@@ -275,21 +282,19 @@ function sortData(data, param, direction = "asc") {
         }
         return 0;
       });
-  createRow(sortedData);  
+  createElements(sortedData);  
 };
 
-// response.pokedata needs to be replaced by the alArray and nlArray
-// need to do array.from(), or can you get nodelist children?
-
 function addButtonEventListeners(arr) {
+  // Create array of elements
+  const arrayOfTeams = arr.map(x => {
+    createRow(x);
+    return x;
+  });
   // Create separate arrays for AL and NL
-  const alArray = arr.filter(obj => obj.league === "American League");
-  const nlArray = arr.filter(obj => obj.league === "National League");
-  console.log(alArray);
-  console.log(nlArray);
-
+  const alArray = arrayOfTeams.filter(obj => obj.league === "American League");
+  const nlArray = arrayOfTeams.filter(obj => obj.league === "National League");
   const tableButtons = document.querySelectorAll("th button");
-  console.log(tableButtons);
   // Add event listeners to table header buttons that sort by that column
   [...tableButtons].map((button) => {
     button.addEventListener("click", (e) => {
@@ -321,16 +326,11 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
   })
   // Create DOM elements for data fetched from API
   .then(teamList => {
-    console.log(teamList);
     // Create table header rows
     createTableHeaders();
-    function createElements(arr) {
-      arr.map(x => {
-        createRow(x);
-        return x;
-      });
-    };
+    // Create table rows
     createElements(teamList);
+    // Create event listeners for sortable header buttons
     addButtonEventListeners(teamList);
     return teamList;
   })
@@ -342,9 +342,8 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 
 /*
 TODO
-continue working on ability to sort by using header buttons
-
-sorting function completed but is throwing errors, need to debug
+fixed sorting issue, but only sorting and displaying one table right now
+need to look into how to get both tables to render when a button is clicked on either
 
 update styling
 how to control cell height if team names split to two lines
