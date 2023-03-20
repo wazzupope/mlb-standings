@@ -183,42 +183,32 @@ function createRow(obj) {
     row.setAttribute('class', 'nl-row');
   };
 
-  const logoCell = makeLogoCell(obj);
+  // Create cells for logos
+  makeLogoCell(obj);
 
-  // need to figure something else out for objKeys? delete the above array declaration?
-  const objKeys = Object.keys(obj);
-  objKeys.map((key) => {
+  // Create cells for team names
+  makeCell(obj.name, objKeys[0]);
 
-    // need to figure out what goes in here for prop and key
-    row.appendChild(makeCell(prop, key));
-  });
-  return row;
-  
-  // makeLogoCell(obj.logo);
+  // Create cells for games played
+  makeCell(obj.gamesPlayed, objKeys[1]);
 
-  // // Create cells for team names
-  // makeCell(obj.name, objKeys[0]);
+  // Create cells for games won
+  makeCell(obj.gamesWon, objKeys[2]);
 
-  // // Create cells for games played
-  // makeCell(obj.gamesPlayed, objKeys[1]);
+  // Create cells for games lost
+  makeCell(obj.gamesLost, objKeys[3]);
 
-  // // Create cells for games won
-  // makeCell(obj.gamesWon, objKeys[2]);
+  // Create cells for win percentage
+  makeCell(obj.winPct, objKeys[4]);
 
-  // // Create cells for games lost
-  // makeCell(obj.gamesLost, objKeys[3]);
+  // Create cells for runs scored
+  makeCell(obj.runsFor, objKeys[5]);
 
-  // // Create cells for win percentage
-  // makeCell(obj.winPct, objKeys[4]);
+  // Create cells for runs against
+  makeCell(obj.runsAgainst, objKeys[6]);
 
-  // // Create cells for runs scored
-  // makeCell(obj.runsFor, objKeys[5]);
-
-  // // Create cells for runs against
-  // makeCell(obj.runsAgainst, objKeys[6]);
-
-  // // Create cells for run differential
-  // makeCell(obj.runDiff, objKeys[7]);
+  // Create cells for run differential
+  makeCell(obj.runDiff, objKeys[7]);
 };
 
 // API headers
