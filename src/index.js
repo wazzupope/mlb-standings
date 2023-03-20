@@ -281,14 +281,13 @@ function sortData(data, param, direction = "asc") {
 // response.pokedata needs to be replaced by the alArray and nlArray
 // need to do array.from(), or can you get nodelist children?
 
-function addButtonEventListeners() {
-  // Create array of table rows for American League
-  const alArray = document.querySelectorAll('.al-row');
+function addButtonEventListeners(arr) {
+  // Create separate arrays for AL and NL
+  const alArray = arr.filter(obj => obj.league === "American League");
+  const nlArray = arr.filter(obj => obj.league === "National League");
   console.log(alArray);
-  // Create array of table rows for National League
-  const nlArray = document.querySelectorAll('.nl-row');
   console.log(nlArray);
-  // Create nodelist of buttons in header row
+
   const tableButtons = document.querySelectorAll("th button");
   console.log(tableButtons);
   // Add event listeners to table header buttons that sort by that column
@@ -312,7 +311,6 @@ function addButtonEventListeners() {
 fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", requestOptions, {mode: 'cors'})
   .then(response => response.json())
   .then(result => {
-    console.log(result);
     const teams = result.response[0];
     return teams;
   })
@@ -333,7 +331,7 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
       });
     };
     createElements(teamList);
-    addButtonEventListeners();
+    addButtonEventListeners(teamList);
     return teamList;
   })
   // .then(teamList => {
