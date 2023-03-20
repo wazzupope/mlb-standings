@@ -245,13 +245,7 @@ function createTeams(teams) {
   return teamArray;
 };
 
-// Create array of table rows for each league
-function createLeagueRowArray() {
-  const alArray = document.querySelectorAll('.al-row');
-  const nlArray = document.querySelectorAll('.nl-row');
-  console.log(alArray);
-  console.log(nlArray);
-};
+
 
 function sortData(data, param, direction = "asc") {
   // Get table body elements
@@ -262,7 +256,7 @@ function sortData(data, param, direction = "asc") {
   nlTableBody.innerHTML = '';
   // Create function to sort rows based on parameter
   const sortedData =
-    direction == "asc"
+    direction === "asc"
       ? [...data].sort((a, b) => {
         if (a[param] < b[param]) {
           return -1;
@@ -281,7 +275,37 @@ function sortData(data, param, direction = "asc") {
         }
         return 0;
       });
-  // getTableContent(sortedData);  
+  createRow(sortedData);  
+};
+
+// response.pokedata needs to be replaced by the alArray and nlArray
+// need to do array.from(), or can you get nodelist children?
+
+function addButtonEventListeners() {
+  // Create array of table rows for American League
+  const alArray = document.querySelectorAll('.al-row');
+  console.log(alArray);
+  // Create array of table rows for National League
+  const nlArray = document.querySelectorAll('.nl-row');
+  console.log(nlArray);
+  // Create nodelist of buttons in header row
+  const tableButtons = document.querySelectorAll("th button");
+  console.log(tableButtons);
+  // Add event listeners to table header buttons that sort by that column
+  [...tableButtons].map((button) => {
+    button.addEventListener("click", (e) => {
+      if (e.target.getAttribute("data-dir") === "desc") {
+        sortData(alArray, e.target.id, "desc");
+        sortData(nlArray, e.target.id, "desc");
+        e.target.setAttribute("data-dir", "asc");
+      } else {
+        sortData(alArray, e.target.id, "asc");
+        sortData(nlArray, e.target.id, "asc");
+        e.target.setAttribute("data-dir", "desc");
+      }
+    });
+    return tableButtons;
+  });
 };
 
 // Fetch request to API for MLB standings
@@ -309,35 +333,21 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
       });
     };
     createElements(teamList);
+    addButtonEventListeners();
     return teamList;
   })
-  .then(teamList => {
-    createLeagueRowArray();
-
-    return teamList;
-  })
+  // .then(teamList => {
+  //   addButtonEventListeners();
+  //   return teamList;
+  // })
   .catch(error => console.log('error', error));
 
 /*
 TODO
 continue working on ability to sort by using header buttons
-going to have to mess with createRow to clean it up and make it look more like the createRow function in the example
 
-use this portion of the example to help guide that process
+sorting function completed but is throwing errors, need to debug
 
-const createRow = (obj) => {
-  const row = document.createElement("tr");
-  const objKeys = Object.keys(obj);
-  objKeys.map((key) => {
-    const cell = document.createElement("td");
-    cell.setAttribute("data-attr", key);
-    cell.innerHTML = obj[key];
-    row.appendChild(cell);
-  });
-  return row;
-};
-
-in fetch below createLeagueRowArray, need to work on using these arrays to sort 
 update styling
 how to control cell height if team names split to two lines
 make tables side by side in desktop and vertical in mobile?
