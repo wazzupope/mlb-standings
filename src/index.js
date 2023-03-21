@@ -338,12 +338,14 @@ how to get page to load with win% sorted first - api is sending with standings i
 refer back to this article if need help: https://webdesign.tutsplus.com/tutorials/how-to-create-a-sortable-html-table-with-javascript--cms-92993
 
 update styling
+make sections and main static sizes (relative to screen) so that headers don't jump around
+move team names to left justified?
+
 how to control cell height if team names split to two lines
 make tables side by side in desktop and vertical in mobile?
 add key as footer
 get a space after the period in St.Louis
-how to make addTableHeaders function less redundant
-need numbers for what place the team is in on the left of each row?
+make js code more DRY
 more options for data to add: *games behind 1st place, streak, record over last 10 games (see espn app)
 figure out if you need to move all of this code back to home.js (will that mess with git tracking?)
 new files for each version of standings (al/nl, divisions, etc)
