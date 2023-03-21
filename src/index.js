@@ -259,8 +259,10 @@ function sortData(data, param, direction = "asc") {
   const alTableBody = document.getElementById('al-table-body');
   const nlTableBody = document.getElementById('nl-table-body');
   // Clear table body elements
-  alTableBody.innerHTML = '';
-  nlTableBody.innerHTML = '';
+  if (alTableBody.innerHTML && nlTableBody.innerHTML) {
+    alTableBody.innerHTML = '';
+    nlTableBody.innerHTML = '';
+  };
   // Create function to sort rows based on parameter
   const sortedData =
     direction === "asc"
