@@ -344,9 +344,8 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 
 /*
 TODO
-fixed sorting issue, but only sorting and displaying one table right now
-need to look into how to get both tables to render when a button is clicked on either
-
+Need to change id's of table header buttons to hyphenated and then change to camelcase
+make columns sort ascending on first click
 update styling
 how to control cell height if team names split to two lines
 make tables side by side in desktop and vertical in mobile?
