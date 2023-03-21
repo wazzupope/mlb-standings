@@ -343,6 +343,7 @@ move team names to left justified?
 
 how to control cell height if team names split to two lines
 make tables side by side in desktop and vertical in mobile?
+add ranking number on left of logo?
 add key as footer
 get a space after the period in St.Louis
 make js code more DRY
