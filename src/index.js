@@ -270,7 +270,7 @@ function sortData(data, param, direction = "asc") {
         if (a[param] < b[param]) {
           return -1;
         }
-        if (a[param] < b[param]) {
+        if (a[param] > b[param]) {
           return 1;
         }
         return 0;
@@ -344,8 +344,8 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 
 /*
 TODO
-Need to change id's of table header buttons to hyphenated and then change to camelcase
 make columns sort ascending on first click
+don't need button on team header if can't figure out how to sort alphabetically
 update styling
 how to control cell height if team names split to two lines
 make tables side by side in desktop and vertical in mobile?
