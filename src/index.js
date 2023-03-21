@@ -29,22 +29,14 @@ function addTableHeaders(element) {
   tr.setAttribute('class', 'header-row');
   thead.appendChild(tr);
 
-  // Create blank header cell over logo column
-  const blankCell = document.createElement('th');
-  blankCell.setAttribute('class', 'table-cell');
-  tr.appendChild(blankCell);
-
-  // Create Team header in table with button
-  const teamHeader = document.createElement('th');
-  teamHeader.setAttribute('class', 'table-cell');
-  teamHeader.setAttribute('class', 'header-cell');
-  tr.appendChild(teamHeader);
-  const teamHeaderButton = document.createElement('button');
-  teamHeaderButton.setAttribute('class', 'header-button');
-  teamHeaderButton.setAttribute('class', 'team-header-button');
-  teamHeaderButton.setAttribute('id', 'team');
-  teamHeaderButton.textContent = 'Team';
-  teamHeader.appendChild(teamHeaderButton);
+  // Create blank header cellx over logo and team name columns
+  function createBlankCell() {
+    const blankCell = document.createElement('th');
+    blankCell.setAttribute('class', 'table-cell');
+    return blankCell
+  };
+  tr.appendChild(createBlankCell());
+  tr.appendChild(createBlankCell());
 
   // Create GP header in table with button
   const gamesPlayedHeader = document.createElement('th');
@@ -167,7 +159,6 @@ const objKeys = ['team', 'games-played', 'games-won', 'games-lost', 'win-pct', '
 
 // DOM creation of table
 function createRow(obj) {
-  console.log(Object.keys(obj));
   const objName = obj.name;
   // Create table rows
   const row = document.createElement('tr');
@@ -265,7 +256,7 @@ function sortData(data, param, direction = "asc") {
   };
   // Create function to sort rows based on parameter
   const sortedData =
-    direction === "asc"
+    direction === "desc"
       ? [...data].sort((a, b) => {
         if (a[param] < b[param]) {
           return -1;
@@ -293,10 +284,12 @@ function addButtonEventListeners(arr) {
     createRow(x);
     return x;
   });
+
   // Create separate arrays for AL and NL
   const alArray = arrayOfTeams.filter(obj => obj.league === "American League");
   const nlArray = arrayOfTeams.filter(obj => obj.league === "National League");
   const tableButtons = document.querySelectorAll("th button");
+
   // Add event listeners to table header buttons that sort by that column
   [...tableButtons].map((button) => {
     button.addEventListener("click", (e) => {
@@ -328,24 +321,22 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
   })
   // Create DOM elements for data fetched from API
   .then(teamList => {
+    console.log(teamList);
     // Create table header rows
     createTableHeaders();
     // Create table rows
-    createElements(teamList);
+    // createElements(teamList);
     // Create event listeners for sortable header buttons
     addButtonEventListeners(teamList);
     return teamList;
   })
-  // .then(teamList => {
-  //   addButtonEventListeners();
-  //   return teamList;
-  // })
   .catch(error => console.log('error', error));
 
 /*
 TODO
-make columns sort ascending on first click
-don't need button on team header if can't figure out how to sort alphabetically
+how to get page to load with win% sorted first - api is sending with standings incorrect, perhaps due to weirdness of spring training
+refer back to this article if need help: https://webdesign.tutsplus.com/tutorials/how-to-create-a-sortable-html-table-with-javascript--cms-92993
+
 update styling
 how to control cell height if team names split to two lines
 make tables side by side in desktop and vertical in mobile?
