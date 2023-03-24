@@ -7,6 +7,10 @@ img {
   vertical-align: middle;
 }
 
+section {
+  width: 50vw;
+};
+
 table {
   border-collapse: collapse;
 };
@@ -48,6 +52,8 @@ color: #edf2f4;
 }
 
 /* 
+Adding section width got rid of border around rows
+
 Need to get league headers centered over tables
 Need to get width of tables static so headers don't jump around while loading
 Need to make it responsive and move the tables vertical to each other on mobile or more narrow screens
