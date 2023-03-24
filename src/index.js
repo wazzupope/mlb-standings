@@ -163,17 +163,18 @@ function createRow(obj) {
   // Create table rows
   const row = document.createElement('tr');
   const teamName = makeId(objName);
-  row.setAttribute('class', 'row');
   row.setAttribute('id', teamName);
   const alTableBody = document.getElementById('al-table-body');
   const nlTableBody = document.getElementById('nl-table-body');
   if (obj.league === 'American League') {
     alTableBody.appendChild(row);
     row.setAttribute('class', 'al-row');
+    row.setAttribute('class', 'row');
   }
   else {
     nlTableBody.appendChild(row);
     row.setAttribute('class', 'nl-row');
+    row.setAttribute('class', 'row');
   };
 
   // Create cells for logos
