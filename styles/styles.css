@@ -1,10 +1,15 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
+  color: #2b2d42;
 }
 
 img {
   vertical-align: middle;
 }
+
+table {
+  border-collapse: collapse;
+};
 
 tr {
   height: 30px;
@@ -19,14 +24,17 @@ th button {
 border: none;
 background: none;
 font-size: 16px;
+font-weight: 700;
+background-color: #8d99ae;
+color: #edf2f4;
 };
-
-.header-row {
-  font-weight: 700;
-}
 
 .league-header {
   text-align: center;
+}
+
+.row {
+  border: 1px solid #8d99ae;
 }
 
 #header {
@@ -38,3 +46,9 @@ font-size: 16px;
   display: flex;
   justify-content: space-evenly;
 }
+
+/* 
+Need to get league headers centered over tables
+Need to get width of tables static so headers don't jump around while loading
+Need to make it responsive and move the tables vertical to each other on mobile or more narrow screens
+*/
