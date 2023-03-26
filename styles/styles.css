@@ -87,7 +87,11 @@ tbody tr {
 }
 
 /* 
-Highlight which column has been sorted
+Highlight which column has been sorted:
+go to js file and add "selected-column" attribute to the td's of the column of the target of the click event
+remove this attribute from any other td's
+go to css file and style the background-color of the sorted-column attribute
+
 Need to get width of tables static so headers don't jump around while loading
 Need to make it responsive and move the tables vertical to each other on mobile or more narrow screens
 At 1024px width need to shift to vertical alignment of the tables
