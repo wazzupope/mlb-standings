@@ -37,6 +37,11 @@ font-size: 16px;
 font-weight: 700;
 background-color: #8d99ae;
 color: #edf2f4;
+height: 30px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 };
 
 th button::after {
@@ -46,10 +51,16 @@ th button::after {
 th button[data-dir="asc"]::after {
   content: url('../assets/triangle-small-up.svg');
   filter: invert(99%) sepia(1%) saturate(1028%) hue-rotate(167deg) brightness(97%) contrast(97%);
+  display: block;
+  height: 1em;
+  width: 1em;
 }
 th button[data-dir="desc"]::after {
   content: url('../assets/triangle-small-down.svg');
   filter: invert(99%) sepia(1%) saturate(1028%) hue-rotate(167deg) brightness(97%) contrast(97%);
+  display: block;
+  height: 1em;
+  width: 1em;
 }
 
 .league-header {
@@ -77,7 +88,6 @@ tbody tr {
 
 /* 
 Highlight which column has been sorted
-Add a carrot next to which column has been sorted
 Need to get width of tables static so headers don't jump around while loading
 Need to make it responsive and move the tables vertical to each other on mobile or more narrow screens
 At 1024px width need to shift to vertical alignment of the tables
