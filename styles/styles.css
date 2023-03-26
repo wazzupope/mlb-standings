@@ -71,6 +71,10 @@ th button[data-dir="desc"]::after {
   padding: 0;
 }
 
+.selected-column {
+  background-color: #8d99ae;
+}
+
 tbody tr {
   border: 1px solid #8d99ae;
 }
