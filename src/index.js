@@ -291,9 +291,18 @@ function addButtonEventListeners(arr) {
   const nlArray = arrayOfTeams.filter(obj => obj.league === "National League");
   const tableButtons = document.querySelectorAll("th button");
 
+  const resetButtons = (event) => {
+    [...tableButtons].map((button) => {
+      if (button !== event.target) {
+        button.removeAttribute("data-dir");
+      }
+    });
+  };
+
   // Add event listeners to table header buttons that sort by that column
   [...tableButtons].map((button) => {
     button.addEventListener("click", (e) => {
+      resetButtons(e);
       if (e.target.getAttribute("data-dir") === "desc") {
         sortData(alArray, e.target.id, "desc");
         sortData(nlArray, e.target.id, "desc");
