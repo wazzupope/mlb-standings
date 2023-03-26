@@ -45,7 +45,7 @@ function addTableHeaders(element) {
   tr.appendChild(gamesPlayedHeader);
   const gamesPlayedHeaderButton = document.createElement('button');
   gamesPlayedHeaderButton.setAttribute('class', 'header-button');
-  gamesPlayedHeaderButton.setAttribute('class', 'games-played-header-button');
+  gamesPlayedHeaderButton.setAttribute('class', 'games-played');
   gamesPlayedHeaderButton.setAttribute('id', 'gamesPlayed');
   gamesPlayedHeaderButton.textContent = 'GP';
   gamesPlayedHeader.appendChild(gamesPlayedHeaderButton);
@@ -57,7 +57,7 @@ function addTableHeaders(element) {
   tr.appendChild(gamesWonHeader);
   const gamesWonHeaderButton = document.createElement('button');
   gamesWonHeaderButton.setAttribute('class', 'header-button');
-  gamesWonHeaderButton.setAttribute('class', 'games-won-header-button');
+  gamesWonHeaderButton.setAttribute('class', 'games-won');
   gamesWonHeaderButton.setAttribute('id', 'gamesWon');
   gamesWonHeaderButton.textContent = 'W';
   gamesWonHeader.appendChild(gamesWonHeaderButton);
@@ -69,7 +69,7 @@ function addTableHeaders(element) {
   tr.appendChild(gamesLostHeader);
   const gamesLostHeaderButton = document.createElement('button');
   gamesLostHeaderButton.setAttribute('class', 'header-button');
-  gamesLostHeaderButton.setAttribute('class', 'games-lost-header-button');
+  gamesLostHeaderButton.setAttribute('class', 'games-lost');
   gamesLostHeaderButton.setAttribute('id', 'gamesLost');
   gamesLostHeaderButton.textContent = 'L';
   gamesLostHeader.appendChild(gamesLostHeaderButton);
@@ -81,7 +81,7 @@ function addTableHeaders(element) {
   tr.appendChild(winPctHeader);
   const winPctHeaderButton = document.createElement('button');
   winPctHeaderButton.setAttribute('class', 'header-button');
-  winPctHeaderButton.setAttribute('class', 'win-pct-header-button');
+  winPctHeaderButton.setAttribute('class', 'win-pct');
   winPctHeaderButton.setAttribute('id', 'winPct');
   winPctHeaderButton.textContent = 'Win%';
   winPctHeader.appendChild(winPctHeaderButton);
@@ -93,7 +93,7 @@ function addTableHeaders(element) {
   tr.appendChild(runsForHeader);
   const runsForHeaderButton = document.createElement('button');
   runsForHeaderButton.setAttribute('class', 'header-button');
-  runsForHeaderButton.setAttribute('class', 'runs-for-header-button');
+  runsForHeaderButton.setAttribute('class', 'runs-for');
   runsForHeaderButton.setAttribute('id', 'runsFor');
   runsForHeaderButton.textContent = 'RS';
   runsForHeader.appendChild(runsForHeaderButton);
@@ -105,7 +105,7 @@ function addTableHeaders(element) {
   tr.appendChild(runsAgainstHeader);
   const runsAgainstHeaderButton = document.createElement('button');
   runsAgainstHeaderButton.setAttribute('class', 'header-button');
-  runsAgainstHeaderButton.setAttribute('class', 'runs-against-header-button');
+  runsAgainstHeaderButton.setAttribute('class', 'runs-against');
   runsAgainstHeaderButton.setAttribute('id', 'runsAgainst');
   runsAgainstHeaderButton.textContent = 'RA';
   runsAgainstHeader.appendChild(runsAgainstHeaderButton);
@@ -117,7 +117,7 @@ function addTableHeaders(element) {
   tr.appendChild(runDiffHeader);
   const runDiffHeaderButton = document.createElement('button');
   runDiffHeaderButton.setAttribute('class', 'header-button');
-  runDiffHeaderButton.setAttribute('class', 'run-diff-header-button');
+  runDiffHeaderButton.setAttribute('class', 'run-diff');
   runDiffHeaderButton.setAttribute('id', 'runDiff');
   runDiffHeaderButton.textContent = 'Diff';
   runDiffHeader.appendChild(runDiffHeaderButton);
@@ -294,8 +294,20 @@ function addButtonEventListeners(arr) {
   const resetButtons = (event) => {
     [...tableButtons].map((button) => {
       if (button !== event.target) {
-        button.removeAttribute("data-dir");
+        button.removeAttribute('data-dir');
       }
+      return button;
+    });
+  };
+
+  // Remove selected column attribute
+  const cells = document.querySelectorAll('tr td');
+  const resetCells = () => {
+    [...cells].map((cell) => {
+      if (cell.hasAttribute('selected-column')) {
+        cell.removeAttribute('selected-column');
+      }
+      return cells;
     });
   };
 
@@ -303,6 +315,7 @@ function addButtonEventListeners(arr) {
   [...tableButtons].map((button) => {
     button.addEventListener("click", (e) => {
       resetButtons(e);
+      resetCells();
       if (e.target.getAttribute("data-dir") === "desc") {
         sortData(alArray, e.target.id, "desc");
         sortData(nlArray, e.target.id, "desc");
@@ -312,6 +325,13 @@ function addButtonEventListeners(arr) {
         sortData(nlArray, e.target.id, "asc");
         e.target.setAttribute("data-dir", "desc");
       }
+      const headerClass = e.target.classList[0];
+      [...cells].map((cell) => {
+        if (cell.classList.contains(headerClass)) {
+          cell.setAttribute('class', 'selected-column');
+        }
+        return cells;
+      });
     });
     return tableButtons;
   });
