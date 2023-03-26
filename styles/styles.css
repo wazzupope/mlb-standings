@@ -71,7 +71,7 @@ th button[data-dir="desc"]::after {
   padding: 0;
 }
 
-.selected-column {
+tr td.selected-column {
   background-color: #8d99ae;
 }
 
@@ -91,12 +91,10 @@ tbody tr {
 }
 
 /* 
-Highlight which column has been sorted:
-go to js file and add "selected-column" attribute to the td's of the column of the target of the click event
-remove this attribute from any other td's
-go to css file and style the background-color of the sorted-column attribute
+Debug why selected-column isn't highlighting which column has been sorted
+
 
 Need to get width of tables static so headers don't jump around while loading
 Need to make it responsive and move the tables vertical to each other on mobile or more narrow screens
-At 1024px width need to shift to vertical alignment of the tables
+At 1024px width need to shift to vertical alignment of the tables (this will be affected if static width is adjusted
 */
