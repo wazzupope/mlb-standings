@@ -328,7 +328,7 @@ function addButtonEventListeners(arr) {
       const headerClass = e.target.classList[0];
       [...cells].map((cell) => {
         if (cell.classList.contains(headerClass)) {
-          cell.setAttribute('class', 'selected-column');
+          cell.classList.add('selected-column');
         }
         return cells;
       });
