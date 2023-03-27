@@ -104,11 +104,18 @@ tbody tr {
   }
 }
 
+@media (max-width: 550px) {
+  #main {
+    flex-direction: column;
+  }
+  section {
+    align-items: flex-start;
+  }
+}
+
 /* 
 Debug why selected-column isn't highlighting which column has been sorted
 
 
 Need to get width of tables static so headers don't jump around while loading
-Need to make it responsive and move the tables vertical to each other on mobile or more narrow screens
-At 1024px width need to shift to vertical alignment of the tables (this will be affected if static width is adjusted
 */
