@@ -301,9 +301,9 @@ function addButtonEventListeners(arr) {
   };
 
   // Remove selected column attribute
-  const cells = document.querySelectorAll('tr td');
+  const cells = Array.from(document.querySelectorAll('tr td'));
   const resetCells = () => {
-    [...cells].map((cell) => {
+    cells.forEach((cell) => {
       if (cell.hasAttribute('selected-column')) {
         cell.removeAttribute('selected-column');
       }
@@ -314,8 +314,8 @@ function addButtonEventListeners(arr) {
   // Add event listeners to table header buttons that sort by that column
   [...tableButtons].map((button) => {
     button.addEventListener("click", (e) => {
-      resetButtons(e);
       resetCells();
+      resetButtons(e);
       if (e.target.getAttribute("data-dir") === "desc") {
         sortData(alArray, e.target.id, "desc");
         sortData(nlArray, e.target.id, "desc");
@@ -326,14 +326,14 @@ function addButtonEventListeners(arr) {
         e.target.setAttribute("data-dir", "desc");
       }
       const headerClass = e.target.classList[0];
-      [...cells].map((cell) => {
+      cells.forEach((cell) => {
         if (cell.classList.contains(headerClass)) {
-          cell.classList.add('selected-column');
-        }
-        return cells;
+        cell.classList.add('selected-column');
+        };
       });
+    return e;
     });
-    return tableButtons;
+  return tableButtons;
   });
 };
 
@@ -351,7 +351,6 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
   })
   // Create DOM elements for data fetched from API
   .then(teamList => {
-    console.log(teamList);
     // Create table header rows
     createTableHeaders();
     // Create table rows
@@ -366,6 +365,8 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
 TODO
 how to get page to load with win% sorted first - api is sending with standings incorrect, perhaps due to weirdness of spring training
 refer back to this article if need help: https://webdesign.tutsplus.com/tutorials/how-to-create-a-sortable-html-table-with-javascript--cms-92993
+
+functionality in addButtonEventListeners that adds and removes selected-column class is currently non-functional
 
 update styling
 make sections and main static sizes (relative to screen) so that headers don't jump around
