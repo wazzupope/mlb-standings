@@ -73,6 +73,10 @@ th button[data-dir="desc"]::after {
   padding: 0;
 }
 
+.header-row {
+  background-color: #8d99ae;
+}
+
 tr td.selected-column {
   background-color: #8d99ae;
 }
