@@ -1,4 +1,4 @@
-import {loadHome} from './home';
+import loadHome from './home';
 
 // Load initial structure of homepage
 loadHome();
