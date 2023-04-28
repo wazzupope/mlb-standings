@@ -72,6 +72,4 @@ function loadHome() {
   nlContainer.appendChild(createTable("nl-table"));
 };
 
-export {
-  loadHome
-};
+export default loadHome;
