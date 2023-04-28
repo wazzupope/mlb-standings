@@ -353,9 +353,7 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
   .then(teamList => {
     // Create table header rows
     createTableHeaders();
-    // Create table rows
-    // createElements(teamList);
-    // Create event listeners for sortable header buttons
+    // Create table rows and event listeners for sortable header buttons
     addButtonEventListeners(teamList);
     return teamList;
   })
