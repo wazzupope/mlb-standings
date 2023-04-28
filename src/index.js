@@ -342,6 +342,7 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
   .then(response => response.json())
   .then(result => {
     const teams = result.response[0];
+    console.log(teams);
     return teams;
   })
   // Make array of teams of class Team
