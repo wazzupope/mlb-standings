@@ -342,21 +342,27 @@ fetch("https://v1.baseball.api-sports.io/standings?season=2023&league=1", reques
   .then(response => response.json())
   .then(result => {
     const teams = result.response[0];
-    console.log(teams);
     return teams;
   })
   // Make array of teams of class Team
   .then(teams => {
+    // create array of teams which returns 60 teams due to being broken down by both league and division
     const teamList = createTeams(teams);
-    return teamList;
+    // create array of just 15 AL teams
+    const americanTeamList = teamList.filter(team => team.league === "American League");
+    // create array of just 15 NL teams
+    const nationalTeamList = teamList.filter(team => team.league === "National League");
+    // join AL and NL arrays for full MLB league array of teams
+    const filteredTeamList = americanTeamList.concat(nationalTeamList);
+    return filteredTeamList;
   })
   // Create DOM elements for data fetched from API
-  .then(teamList => {
+  .then(filteredTeamList => {
     // Create table header rows
     createTableHeaders();
     // Create table rows and event listeners for sortable header buttons
-    addButtonEventListeners(teamList);
-    return teamList;
+    addButtonEventListeners(filteredTeamList);
+    return filteredTeamList;
   })
   .catch(error => console.log('error', error));
 
